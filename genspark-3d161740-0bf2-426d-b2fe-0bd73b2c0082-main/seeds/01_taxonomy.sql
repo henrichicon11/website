@@ -35,11 +35,13 @@ INSERT OR REPLACE INTO categories (id, slug, name, icon, kind, sort) VALUES
 -- ============ Transport mode baseline rates ============
 -- Used to ESTIMATE fares on routes without curated data.
 -- Derived from typical 2024-25 Ugandan public-transport pricing and fuel at ~UGX 5,200/litre.
+-- Bus/minibus per-km rates are calibrated against the curated fares in seeds/data/transport.mjs
+-- (e.g. Kampala-Kabale 411 km = UGX 30-40k, Kampala-Jinja 80 km = UGX 10-15k).
 INSERT OR REPLACE INTO transport_mode_rates
  (mode,label,icon,ugx_per_km_min,ugx_per_km_max,base_fare_min,base_fare_max,avg_speed_kmh,per_person,max_distance_km,min_distance_km,comfort,description,sort) VALUES
- ('bus','Bus','fa-bus',150,260,3000,5000,48,1,NULL,60,3,
+ ('bus','Bus','fa-bus',80,120,3000,5000,48,1,NULL,60,3,
   'Scheduled coaches on main highways. Cheapest long-distance option. Book a morning departure — most upcountry buses leave before 09:00 and fill up fast.',1),
- ('minibus','Taxi / Minibus','fa-van-shuttle',190,330,2000,3000,42,1,NULL,0,2,
+ ('minibus','Taxi / Minibus','fa-van-shuttle',100,150,2000,3000,42,1,NULL,0,2,
   'The 14-seater matatu. Leaves when full rather than on a timetable. Fares are negotiated and rise in the rain and on market days.',2),
  ('private_car','Private Car (self-drive)','fa-car',330,520,0,0,55,0,NULL,0,4,
   'Fuel plus wear for a saloon car at roughly 11-13 km/litre. Cost shown is for the whole vehicle, not per person.',3),
